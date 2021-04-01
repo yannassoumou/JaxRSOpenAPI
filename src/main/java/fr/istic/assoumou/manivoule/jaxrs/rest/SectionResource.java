@@ -30,11 +30,12 @@ public class SectionResource {
         return Response.status(200).entity(sectionService.createSection(sectionDto)).build();
     }
 
-    @POST("/kanban")
+    @POST
+    @Path("/kanban")
     @Produces( MediaType.APPLICATION_JSON)
     @Consumes( MediaType.APPLICATION_JSON)
-    public Response addSectionToKanban(SectionDto sectionDto, TableauKanbanDto tableauKanbanDto){
-        return Response.status(200).entity(sectionService.addSectionToKanban(sectionDto.getId_section(),tableauKanbanDto.getId_tableau())).build();
+    public Response addSectionToKanban(@FormParam("id_section")int id_section,@FormParam("id_tableau")int id_tableau){
+        return Response.status(200).entity(sectionService.addSectionToKanban(id_section,id_tableau)).build();
     }
 
 }
