@@ -2,6 +2,7 @@ package fr.istic.assoumou.manivoule.jaxrs.dao;
 
 import fr.istic.assoumou.manivoule.jaxrs.business.Collaborateur;
 
+import javax.ws.rs.POST;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class CollaborateurDao extends AbstractJpaDao<String, Collaborateur>  {
         else
             return null;
     }
-
+    @Override
     public List<Collaborateur> findAll() {
         List<Collaborateur> coll = this.entityManager.createQuery("select c from Collaborateur as c").getResultList();
         return coll;

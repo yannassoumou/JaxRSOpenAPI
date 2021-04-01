@@ -1,5 +1,6 @@
 package fr.istic.assoumou.manivoule.jaxrs.dao;
 
+import fr.istic.assoumou.manivoule.jaxrs.business.Collaborateur;
 import fr.istic.assoumou.manivoule.jaxrs.business.Section;
 import fr.istic.assoumou.manivoule.jaxrs.business.TableauKanban;
 
@@ -16,5 +17,11 @@ public class SectionDao extends AbstractJpaDao<String, Section> {
             return s.get(0);
         else
             return null;
+    }
+
+    @Override
+    public List<Section> findAll() {
+        List<Section> sectionList = this.entityManager.createQuery("select s from Section as s").getResultList();
+        return sectionList;
     }
 }
