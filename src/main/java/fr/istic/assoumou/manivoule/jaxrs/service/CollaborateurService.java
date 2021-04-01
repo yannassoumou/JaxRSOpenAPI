@@ -10,23 +10,23 @@ import java.util.List;
 
 public class CollaborateurService {
 
-    CollaborateurDao dao = new CollaborateurDao();
+    CollaborateurDao collaborateurDao = new CollaborateurDao();
 
     public CollaborateurDto getCollaborateurByEmail(String email) {
-        Collaborateur collab = dao.findOne(email);
-        CollaborateurDto dto = null;
+        Collaborateur collab = collaborateurDao.findOne(email);
+        CollaborateurDto collabDto = null;
         if(collab != null ) {
-            dto = new CollaborateurDto();
-            dto.setEmail(collab.getEmail());
-            dto.setMatricule(collab.getMatricule());
-            dto.setName(collab.getName());
+            collabDto = new CollaborateurDto();
+            collabDto.setEmail(collab.getEmail());
+            collabDto.setMatricule(collab.getMatricule());
+            collabDto.setName(collab.getName());
 
         }
-        return dto;
+        return collabDto;
     }
 
     public List<CollaborateurDto> getCollaborateurs() {
-        List<Collaborateur> collab = dao.findAll();
+        List<Collaborateur> collab = collaborateurDao.findAll();
         List<CollaborateurDto> res = new ArrayList<>();
         collab.forEach(r -> {
             CollaborateurDto dto = new CollaborateurDto();
@@ -43,7 +43,7 @@ public class CollaborateurService {
     public CollaborateurDto createCollaborateur(CollaborateurDto collab) {
         Collaborateur c = new Collaborateur(collab.getMatricule(), collab.getEmail(), collab.getName());
 
-        dao.save(c);
+        collaborateurDao.save(c);
 
         return collab;
     }

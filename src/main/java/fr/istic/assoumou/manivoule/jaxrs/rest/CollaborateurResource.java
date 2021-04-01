@@ -12,18 +12,18 @@ import java.util.List;
 @Path("/collab")
 public class CollaborateurResource {
 
-    CollaborateurService service = new CollaborateurService();
+    CollaborateurService collaborateurService = new CollaborateurService();
 
     @GET
     @Path("{email}")
     @Produces( MediaType.APPLICATION_JSON)
     public Response getCollaborateurByEmail(@PathParam("email") String email) {
-        CollaborateurDto res = service.getCollaborateurByEmail(email);
+        CollaborateurDto res = collaborateurService.getCollaborateurByEmail(email);
         if (res == null) {
             return Response.status(200).entity("Ce collaborateure n'existe pas !").build();
         }
         return Response.status(200)
-                .entity(service.getCollaborateurByEmail(email)).build();
+                .entity(collaborateurService.getCollaborateurByEmail(email)).build();
     }
 
     @GET
@@ -31,14 +31,14 @@ public class CollaborateurResource {
     public Response getCollaborateurs() {
         //return Response.ok(service.getCollaborateurByEmail(email)).build();
         return Response.status(200)
-                .entity(service.getCollaborateurs()).build();
+                .entity(collaborateurService.getCollaborateurs()).build();
     }
 
     @POST
     @Produces( MediaType.APPLICATION_JSON)
     @Consumes( MediaType.APPLICATION_JSON)
     public CollaborateurDto createCollaborateur(CollaborateurDto collab) {
-        CollaborateurDto res = service.createCollaborateur(collab);
+        CollaborateurDto res = collaborateurService.createCollaborateur(collab);
         return res;
     }
 

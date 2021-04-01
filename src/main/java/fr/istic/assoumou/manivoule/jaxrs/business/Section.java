@@ -1,11 +1,12 @@
 package fr.istic.assoumou.manivoule.jaxrs.business;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
-public class Section {
+public class Section implements Serializable {
 
     private int id_section;
     private String name_section;
