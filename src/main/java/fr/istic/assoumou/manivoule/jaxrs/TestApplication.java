@@ -23,7 +23,6 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import fr.istic.assoumou.manivoule.jaxrs.rest.CollaborateurResource;
-import fr.istic.assoumou.manivoule.jaxrs.rest.PetResource;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
 //@ApplicationPath("/api")
