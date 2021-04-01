@@ -36,15 +36,17 @@ public class SectionService {
 
         if (section != null && tk != null) {
             Collection<Section> listSection = tk.getSection();
-            tk.setSection(listSection);
+
 
             if (!listSection.contains(section)) {
                 listSection.add(section);
             }
+            tk.setSection(listSection);
         } else {
             return false;
         }
-        tableauKanbanDao.save(tk);
+
+        tableauKanbanDao.update(tk);
         return true;
     }
 
