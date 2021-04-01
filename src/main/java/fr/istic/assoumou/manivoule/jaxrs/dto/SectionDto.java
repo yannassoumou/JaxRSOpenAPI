@@ -13,6 +13,8 @@ public class SectionDto {
     private TableauKanban tbk;
     private Collection<Fiche> parentFiche = new ArrayList<Fiche>();
 
+
+    private int id_tableau;
     public SectionDto(int id_section, String name_section, Boolean state, TableauKanban tbk, Collection<Fiche> parentFiche) {
         this.id_section = id_section;
         this.name_section = name_section;
@@ -21,6 +23,14 @@ public class SectionDto {
         this.parentFiche = parentFiche;
     }
 
+
+    public int getId_tableau() {
+        return id_tableau;
+    }
+
+    public void setId_tableau(int id_tableau) {
+        this.id_tableau = id_tableau;
+    }
     public int getId_section() {
         return id_section;
     }
