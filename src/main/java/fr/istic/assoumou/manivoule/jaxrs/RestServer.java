@@ -1,4 +1,4 @@
-package fr.istic.taa.jaxrs;
+package fr.istic.assoumou.manivoule.jaxrs;
 
 import io.undertow.Undertow;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
