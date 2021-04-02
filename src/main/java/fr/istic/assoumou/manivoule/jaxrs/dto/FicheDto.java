@@ -1,5 +1,8 @@
 package fr.istic.assoumou.manivoule.jaxrs.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.istic.assoumou.manivoule.jaxrs.business.Collaborateur;
+import fr.istic.assoumou.manivoule.jaxrs.business.Section;
 import fr.istic.assoumou.manivoule.jaxrs.business.Tag;
 
 import java.sql.Date;
@@ -15,11 +18,18 @@ public class FicheDto {
     String lieu;
     String url;
     String note;
+    int sectionId;
+    String sectionName;
+    String emailResp;
     List<Tag> ficheTag = new ArrayList<>();
+    @JsonIgnore
+    Collaborateur responsable;
+    @JsonIgnore
+    Section section;
 
     public FicheDto(){}
 
-    public FicheDto(int id_fiche, String libelle, Date dateFin, String timeTodo, String lieu, String url, String note, List<Tag> ficheTag) {
+    public FicheDto(int id_fiche, String libelle, Date dateFin, String timeTodo, String lieu, String url, String note, Collaborateur collaborateur, Section section, List<Tag> tags) {
         this.id_fiche = id_fiche;
         this.libelle = libelle;
         this.dateFin = dateFin;
@@ -27,7 +37,13 @@ public class FicheDto {
         this.lieu = lieu;
         this.url = url;
         this.note = note;
-        this.ficheTag.addAll(ficheTag);
+        this.responsable = collaborateur;
+        this.emailResp = responsable.getEmail();
+        this.section =section;
+        this.sectionId = section.getId_section();
+        this.sectionName = section.getName_section();
+        //this.ficheTag.addAll(tags);
+        //tags.forEach(t -> ficheTag.add(new Tag(t.getName())));
     }
 
     public int getId_fiche() {
@@ -98,4 +114,43 @@ public class FicheDto {
         this.ficheTag.addAll(ficheTag);
     }
 
+    public Collaborateur getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(Collaborateur responsable) {
+        this.responsable = responsable;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public String getEmailResp() {
+        return emailResp;
+    }
+
+    public void setEmailResp(String emailResp) {
+        this.emailResp = emailResp;
+    }
+
+    public int getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(int sectionId) {
+        this.sectionId = sectionId;
+    }
+
+    public String getSectionName() {
+        return sectionName;
+    }
+
+    public void setSectionName(String sectionName) {
+        this.sectionName = sectionName;
+    }
 }

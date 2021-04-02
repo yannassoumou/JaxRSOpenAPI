@@ -23,6 +23,8 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import fr.istic.assoumou.manivoule.jaxrs.rest.CollaborateurResource;
+import fr.istic.assoumou.manivoule.jaxrs.rest.FicheResource;
+import fr.istic.assoumou.manivoule.jaxrs.rest.SectionResource;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
 //@ApplicationPath("/api")
@@ -35,6 +37,8 @@ public class TestApplication extends Application {
         final Set<Class<?>> clazzes = new HashSet<Class<?>>();
 
         clazzes.add(CollaborateurResource.class);
+        clazzes.add(FicheResource.class);
+        clazzes.add(SectionResource.class);
         clazzes.add(OpenApiResource.class);
         
 

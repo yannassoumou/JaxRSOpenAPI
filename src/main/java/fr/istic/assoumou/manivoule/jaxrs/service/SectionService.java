@@ -46,6 +46,7 @@ public class SectionService {
             return false;
         }
 
+        sectionDao.update(section);
         tableauKanbanDao.update(tk);
         return true;
     }

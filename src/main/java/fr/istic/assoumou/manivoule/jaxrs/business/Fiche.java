@@ -1,12 +1,15 @@
 package fr.istic.assoumou.manivoule.jaxrs.business;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Fiche {
+public class Fiche implements Serializable {
 
     int id_fiche;
     String libelle;
@@ -18,6 +21,19 @@ public class Fiche {
     List<Tag> ficheTag = new ArrayList<>();
     Collaborateur responsable;
     Section section;
+
+    public Fiche(String libelle, Date dateFin, String timeTodo, String lieu, String url, String note, Collaborateur responsable, Section section, List<Tag> tags) {
+        this.id_fiche = id_fiche;
+        this.libelle = libelle;
+        this.dateFin = dateFin;
+        this.timeTodo = timeTodo;
+        this.lieu = lieu;
+        this.url = url;
+        this.note = note;
+        this.responsable = responsable;
+        this.section = getSection();
+        this.ficheTag = tags;
+    }
 
     public Fiche(String libelle, Section section) {
         this.libelle = libelle;

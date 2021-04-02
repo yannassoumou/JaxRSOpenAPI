@@ -28,7 +28,7 @@ public class Collaborateur implements Serializable {
     public Collaborateur() {
 
     }
-    public void setEmail(String id) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

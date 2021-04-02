@@ -23,6 +23,8 @@ public class SectionDto {
         this.parentFiche = parentFiche;
     }
 
+    public SectionDto(){}
+
 
     public int getId_tableau() {
         return id_tableau;
