@@ -19,6 +19,19 @@ public class FicheResource {
     FicheService ficheService = new FicheService();
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFiches() {
+        List<FicheDto> res = ficheService.getFiches();
+
+        if (!res.isEmpty()) {
+            return Response.status(200)
+                    .entity(res).build();
+        } else {
+            return Response.status(200).entity("Ce collaborateure n'a aucune fiche !").build();
+        }
+    }
+
+    @GET
     @Path("resp/{email}")
     @Produces( MediaType.APPLICATION_JSON)
     public Response getFicheByRespEmail(@PathParam("email") String respEmail) {
@@ -81,7 +94,7 @@ public class FicheResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response moveFiche(MoveFicherequest moveFicherequest) {
 
-        Fiche res = ficheService.moveFiche(moveFicherequest);
+        List<FicheDto> res = ficheService.moveFiche(moveFicherequest);
         if (res != null) {
             return Response.status(200)
                     .entity(res).build();

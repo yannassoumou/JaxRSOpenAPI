@@ -1,5 +1,6 @@
 package fr.istic.assoumou.manivoule.jaxrs.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -15,15 +16,15 @@ public class Fiche implements Serializable {
     String libelle;
     Date dateFin;
     String timeTodo;
+    List<Tag> ficheTag = new ArrayList<>();
     String lieu;
     String url;
     String note;
-    List<Tag> ficheTag = new ArrayList<>();
+
     Collaborateur responsable;
     Section section;
 
     public Fiche(String libelle, Date dateFin, String timeTodo, String lieu, String url, String note, Collaborateur responsable, Section section, List<Tag> tags) {
-        this.id_fiche = id_fiche;
         this.libelle = libelle;
         this.dateFin = dateFin;
         this.timeTodo = timeTodo;
@@ -62,9 +63,10 @@ public class Fiche implements Serializable {
     }
 
     public void setFicheTag(List<Tag> ficheTag) {
-        this.ficheTag = ficheTag;
+        this.ficheTag.addAll(ficheTag);
     }
 
+    @JsonIgnore
     @ManyToOne
     public Collaborateur getResponsable() {
         return responsable;
@@ -84,6 +86,7 @@ public class Fiche implements Serializable {
         this.id_fiche = id_fiche;
     }
 
+   @JsonIgnore
     @ManyToOne
     public Section getSection() {
         return section;

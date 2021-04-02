@@ -22,9 +22,8 @@ public class FicheDto {
     String sectionName;
     String emailResp;
     List<Tag> ficheTag = new ArrayList<>();
-    @JsonIgnore
+
     Collaborateur responsable;
-    @JsonIgnore
     Section section;
 
     public FicheDto(){}
@@ -39,7 +38,7 @@ public class FicheDto {
         this.note = note;
         this.responsable = collaborateur;
         this.emailResp = responsable.getEmail();
-        this.section =section;
+        this.section = section;
         this.sectionId = section.getId_section();
         this.sectionName = section.getName_section();
         //this.ficheTag.addAll(tags);
@@ -114,6 +113,7 @@ public class FicheDto {
         this.ficheTag.addAll(ficheTag);
     }
 
+    @JsonIgnore
     public Collaborateur getResponsable() {
         return responsable;
     }
@@ -122,6 +122,7 @@ public class FicheDto {
         this.responsable = responsable;
     }
 
+    @JsonIgnore
     public Section getSection() {
         return section;
     }

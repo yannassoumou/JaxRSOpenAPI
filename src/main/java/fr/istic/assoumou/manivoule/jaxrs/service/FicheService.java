@@ -17,13 +17,13 @@ public class FicheService {
     FicheDao ficheDao = new FicheDao();
     SectionDao sectionDao = new SectionDao();
 
-    public List<FicheDto> getFiche() {
+    public List<FicheDto> getFiches() {
         List<Fiche> fiches = ficheDao.findAll();
         return formatListFiche(fiches);
     }
 
     public List<FicheDto> getFicheByRespEmail(String respEmail) {
-        List<Fiche> fiches = ficheDao.findByRespEmail(respEmail);
+        List<Fiche> fiches = ficheDao.findByResponsable(respEmail);
         return formatListFiche(fiches);
     }
 
@@ -73,19 +73,21 @@ public class FicheService {
         return true;
     }
 
-    public Fiche moveFiche(MoveFicherequest request) {
-        Fiche fiche = null;
+    public List<FicheDto> moveFiche(MoveFicherequest request) {
+        List<Fiche> fiches = new ArrayList<>();
         if (request.getId_fiche() != 0) {
-            fiche = ficheDao.findOne(request.getId_fiche());
+            fiches.add(ficheDao.findById(request.getId_fiche()));
         }
         //Section from = sectionDao.findById(request.getSection_from_id());
-        //Section to = sectionDao.findById(request.getSection_to_id());
+        Section to = sectionDao.findById(request.getSection_to_id());
 //
-        //if (fiche != null) {
-        //    fiche.setSection(to);
-        //}
+        if (fiches.get(0) != null) {
+            fiches.get(0).setSection(to);
+        }
 
-        return fiche;
+        ficheDao.save(fiches.get(0));
+
+        return formatListFiche(fiches);
     }
 
 
