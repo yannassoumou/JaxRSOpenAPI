@@ -1,5 +1,6 @@
 package fr.istic.assoumou.manivoule.jaxrs.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.istic.assoumou.manivoule.jaxrs.business.Fiche;
 import fr.istic.assoumou.manivoule.jaxrs.business.TableauKanban;
 
@@ -57,6 +58,7 @@ public class SectionDto {
         this.state = state;
     }
 
+    @JsonIgnore
     public TableauKanban getTbk() {
         return tbk;
     }

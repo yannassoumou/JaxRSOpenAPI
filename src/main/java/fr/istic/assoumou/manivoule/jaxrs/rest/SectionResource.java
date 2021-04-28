@@ -18,6 +18,14 @@ public class SectionResource {
     TableauKanbanService tableauKanbanService = new TableauKanbanService();
 
     @GET
+    @Path("/{section_id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSectionById(@PathParam("section_id") Integer section_id) {
+        Section section = sectionService.getSectionByIdDao(section_id);
+        return Response.status(200).entity(section).build();
+    }
+
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getSection() {
         List<Section> sectionList = sectionService.getSectionDao();

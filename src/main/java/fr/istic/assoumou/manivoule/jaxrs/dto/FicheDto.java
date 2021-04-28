@@ -28,7 +28,7 @@ public class FicheDto {
 
     public FicheDto(){}
 
-    public FicheDto(int id_fiche, String libelle, Date dateFin, String timeTodo, String lieu, String url, String note, Collaborateur collaborateur, Section section, List<Tag> tags) {
+    public FicheDto(int id_fiche, String libelle, Date dateFin, String timeTodo, String lieu, String url, String note, Section section, List<Tag> tags) {
         this.id_fiche = id_fiche;
         this.libelle = libelle;
         this.dateFin = dateFin;
@@ -36,8 +36,6 @@ public class FicheDto {
         this.lieu = lieu;
         this.url = url;
         this.note = note;
-        this.responsable = collaborateur;
-        this.emailResp = responsable.getEmail();
         this.section = section;
         this.sectionId = section.getId_section();
         this.sectionName = section.getName_section();
@@ -120,6 +118,7 @@ public class FicheDto {
 
     public void setResponsable(Collaborateur responsable) {
         this.responsable = responsable;
+        this.emailResp = responsable.getEmail();
     }
 
     @JsonIgnore

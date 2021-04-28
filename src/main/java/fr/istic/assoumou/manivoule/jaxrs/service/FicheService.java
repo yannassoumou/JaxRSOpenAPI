@@ -46,7 +46,10 @@ public class FicheService {
             fiches.forEach(f -> {
                 FicheDto uneFiche = new FicheDto(f.getId_fiche(), f.getLibelle(), f.getDateFin(),
                         f.getTimeTodo(), f.getLieu(), f.getUrl(), f.getNote(),
-                        f.getResponsable(), f.getSection(), f.getFicheTag());
+                         f.getSection(), f.getFicheTag());
+                if (f.getResponsable() != null) {
+                    uneFiche.setResponsable(f.getResponsable());
+                }
                 res.add(uneFiche);
             });
         }
@@ -70,25 +73,33 @@ public class FicheService {
                 coll, section, ficheDto.getFicheTag()
         );
         ficheDao.save(newFiche);
+        if (section == null) return false;
         return true;
     }
 
-    public List<FicheDto> moveFiche(MoveFicherequest request) {
+    public List<FicheDto> moveFiche(int id_fiche, int section_from, int section_to) {
         List<Fiche> fiches = new ArrayList<>();
-        if (request.getId_fiche() != 0) {
-            fiches.add(ficheDao.findById(request.getId_fiche()));
+        if (id_fiche != 0) {
+            fiches.add(ficheDao.findById(id_fiche));
         }
         //Section from = sectionDao.findById(request.getSection_from_id());
-        Section to = sectionDao.findById(request.getSection_to_id());
+        Section to = sectionDao.findById(section_to);
 //
         if (fiches.get(0) != null) {
             fiches.get(0).setSection(to);
         }
 
-        ficheDao.save(fiches.get(0));
+        ficheDao.update(fiches.get(0));
 
         return formatListFiche(fiches);
     }
+
+    public boolean deleteFicheById(int id_fiche) {
+        Fiche f = ficheDao.findById(id_fiche);
+        ficheDao.delete(f);
+        return f != null;
+    }
+
 
 
 }

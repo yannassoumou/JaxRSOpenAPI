@@ -34,6 +34,7 @@ public class Fiche implements Serializable {
         this.responsable = responsable;
         this.section = getSection();
         this.ficheTag = tags;
+        this.section = section;
     }
 
     public Fiche(String libelle, Section section) {
@@ -86,7 +87,7 @@ public class Fiche implements Serializable {
         this.id_fiche = id_fiche;
     }
 
-   @JsonIgnore
+    @JsonIgnore
     @ManyToOne
     public Section getSection() {
         return section;

@@ -88,13 +88,15 @@ public class FicheResource {
         //        .entity(ficheDto.getFicheTag()).build();
     }
 
-    @POST
-    @Path("move")
+    @PUT
+    @Path("/{id_fiche}/{from}/{to}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response moveFiche(MoveFicherequest moveFicherequest) {
+    public Response moveFiche(@PathParam("id_fiche") Integer id_fiche,
+                              @PathParam("from") Integer from ,
+                              @PathParam("to") Integer to) {
 
-        List<FicheDto> res = ficheService.moveFiche(moveFicherequest);
+        List<FicheDto> res = ficheService.moveFiche(id_fiche, from, to);
         if (res != null) {
             return Response.status(200)
                     .entity(res).build();
@@ -102,6 +104,20 @@ public class FicheResource {
             return Response.status(200).entity("Erreur d'ajout !").build();
         }
 
+    }
+
+    @DELETE
+    @Path("/{id_fiche}")
+    @Produces( MediaType.APPLICATION_JSON)
+    public Response deleteFiche(@PathParam("id_fiche") Integer id_fiche) {
+        boolean res = ficheService.deleteFicheById(id_fiche);
+
+        if (res) {
+            return Response.status(204)
+                    .entity(res).build();
+        } else {
+            return Response.status(200).entity("La fiche n'a pas été supprimée !").build();
+        }
     }
 
 

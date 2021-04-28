@@ -1,5 +1,7 @@
 package fr.istic.assoumou.manivoule.jaxrs.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class Section implements Serializable {
     public Section() {
 
     }
+
+    @JsonIgnore
     @ManyToOne
     public TableauKanban getTbk() {
         return tbk;

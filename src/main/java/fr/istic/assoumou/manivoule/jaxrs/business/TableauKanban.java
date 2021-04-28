@@ -21,7 +21,7 @@ public class TableauKanban implements Serializable {
 
     }
 
-    @OneToMany(mappedBy = "tbk")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "tbk")
     public Collection<Section> getSection() {
         return section;
     }

@@ -26,6 +26,10 @@ public class SectionService {
         return sectionDao.findAll();
     }
 
+    public Section getSectionByIdDao(int id) {
+        return sectionDao.findById(id);
+    }
+
 
     public boolean addSectionToKanban(int id_section, int id_tableau) {
         Section section = sectionDao.findById(id_section);
