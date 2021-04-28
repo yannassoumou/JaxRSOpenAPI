@@ -120,5 +120,19 @@ public class FicheResource {
         }
     }
 
+    @PUT
+    @Path("/{id_fiche}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces( MediaType.APPLICATION_JSON)
+    public Response updateFiche(@PathParam("id_fiche") Integer id_fiche, FicheDto ficheDto) {
+        FicheDto res = ficheService.updateFiche(id_fiche, ficheDto);
+        if (res != null) {
+            return Response.status(200)
+                    .entity(res).build();
+        } else {
+            return Response.status(200).entity("La fiche n'a pas été supprimée !").build();
+        }
+    }
+
 
 }

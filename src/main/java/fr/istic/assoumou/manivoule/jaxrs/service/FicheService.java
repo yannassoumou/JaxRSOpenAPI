@@ -100,6 +100,31 @@ public class FicheService {
         return f != null;
     }
 
+    public FicheDto updateFiche(int id_fiche, FicheDto ficheDto) {
+        Collaborateur coll = null;
+        if (ficheDto.getEmailResp() != null) {
+            CollaborateurDao collDao = new CollaborateurDao();
+            coll = collDao.findOne(ficheDto.getEmailResp());
+        }
+        SectionDao sectionDao = new SectionDao();
+        Section section = sectionDao.findById(ficheDto.getSectionId());
 
+        Fiche f = new Fiche(
+                ficheDto.getLibelle(), ficheDto.getDateFin(), ficheDto.getTimeTodo(),
+                ficheDto.getLieu(), ficheDto.getUrl(), ficheDto.getNote(),
+                coll, section, ficheDto.getFicheTag()
+        );
+
+        f = ficheDao.update(f);
+        ficheDao.delete(ficheDao.findById(id_fiche));
+
+        FicheDto uneFiche = new FicheDto(f.getId_fiche(), f.getLibelle(), f.getDateFin(),
+                f.getTimeTodo(), f.getLieu(), f.getUrl(), f.getNote(),
+                f.getSection(), f.getFicheTag());
+        if (f.getResponsable() != null) {
+            uneFiche.setResponsable(f.getResponsable());
+        }
+        return uneFiche;
+    }
 
 }
