@@ -8,13 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableauKanbanDao extends AbstractJpaDao<Long, TableauKanban> {
-    public TableauKanban findById(int id) {
+
+    public List<TableauKanban> findById(int id) {
         List<TableauKanban> tk = new ArrayList<>();
-        tk = this.entityManager.createQuery("select tk from TableauKanban as tk where tk.id_tableau = :id")
-                .setParameter("id", id).getResultList();
-        if (! tk.isEmpty())
-            return tk.get(0);
-        else
-            return null;
+        tk = EntityManagerHelper.getEntityManager()
+                .createQuery("select tk from TableauKanban as tk where tk.id_tableau = :id")
+                .setParameter("id", id)
+                .getResultList();
+        return tk;
+    }
+
+    @Override
+    public List<TableauKanban> findAll() {
+        List<TableauKanban> listTbk = EntityManagerHelper.getEntityManager()
+                .createQuery("select tbk from TableauKanban as tbk")
+                .getResultList();
+        return listTbk;
     }
 }

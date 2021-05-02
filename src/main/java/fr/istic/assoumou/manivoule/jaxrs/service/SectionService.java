@@ -29,7 +29,7 @@ public class SectionService {
 
     public boolean addSectionToKanban(int id_section, int id_tableau) {
         Section section = sectionDao.findById(id_section);
-        TableauKanban tk = tableauKanbanDao.findById(id_tableau);
+        TableauKanban tk = tableauKanbanDao.findById(id_tableau).get(0);
 
         SectionDto sectionDto;
         TableauKanbanDto tableauKanbanDto;
@@ -37,11 +37,10 @@ public class SectionService {
         if (section != null && tk != null) {
             Collection<Section> listSection = tk.getSection();
 
-
-            if (!listSection.contains(section)) {
-                listSection.add(section);
-            }
-            tk.setSection(listSection);
+           // if (!listSection.contains(section)) {
+                section.setTbk(tk);
+            //}
+            //tk.setSection(listSection);
         } else {
             return false;
         }

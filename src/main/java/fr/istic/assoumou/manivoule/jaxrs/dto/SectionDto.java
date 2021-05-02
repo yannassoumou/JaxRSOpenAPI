@@ -1,5 +1,6 @@
 package fr.istic.assoumou.manivoule.jaxrs.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.istic.assoumou.manivoule.jaxrs.business.Fiche;
 import fr.istic.assoumou.manivoule.jaxrs.business.TableauKanban;
 
@@ -10,11 +11,12 @@ public class SectionDto {
     private int id_section;
     private String name_section;
     private Boolean state;
+    @JsonIgnore
     private TableauKanban tbk;
+    @JsonIgnore
     private Collection<Fiche> parentFiche = new ArrayList<Fiche>();
-
-
     private int id_tableau;
+
     public SectionDto(int id_section, String name_section, Boolean state, TableauKanban tbk, Collection<Fiche> parentFiche) {
         this.id_section = id_section;
         this.name_section = name_section;

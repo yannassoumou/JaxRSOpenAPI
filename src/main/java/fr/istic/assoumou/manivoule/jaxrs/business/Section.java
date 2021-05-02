@@ -1,5 +1,7 @@
 package fr.istic.assoumou.manivoule.jaxrs.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,8 +14,9 @@ public class Section implements Serializable {
     private String name_section;
     private Boolean state;
 
-
+    @JsonIgnore
     private TableauKanban tbk;
+    @JsonIgnore
     private Collection<Fiche> parentFiche = new ArrayList<Fiche>();
 
     public Section(String name, Boolean state) {
@@ -24,6 +27,7 @@ public class Section implements Serializable {
     public Section() {
 
     }
+
     @ManyToOne
     public TableauKanban getTbk() {
         return tbk;
@@ -32,6 +36,7 @@ public class Section implements Serializable {
     public void setTbk(TableauKanban tbk) {
         this.tbk = tbk;
     }
+
     @OneToMany(mappedBy = "section")
     public Collection<Fiche> getParentFiche() {
         return parentFiche;
