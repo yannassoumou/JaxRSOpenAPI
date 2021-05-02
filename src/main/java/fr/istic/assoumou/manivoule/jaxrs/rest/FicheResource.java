@@ -40,6 +40,11 @@ public class FicheResource {
         }
     }
 
+    /**
+     * testt
+     * @param id
+     * @return
+     */
     @GET
     @Path("/{id}")
     @Produces( MediaType.APPLICATION_JSON)

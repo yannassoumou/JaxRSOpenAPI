@@ -25,9 +25,10 @@ import javax.ws.rs.core.Application;
 import fr.istic.assoumou.manivoule.jaxrs.rest.CollaborateurResource;
 import fr.istic.assoumou.manivoule.jaxrs.rest.FicheResource;
 import fr.istic.assoumou.manivoule.jaxrs.rest.SectionResource;
+import fr.istic.assoumou.manivoule.jaxrs.rest.SwaggerResource;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
-//@ApplicationPath("/api")
+@ApplicationPath("/")
 public class TestApplication extends Application {
 
 
@@ -36,11 +37,14 @@ public class TestApplication extends Application {
 
         final Set<Class<?>> clazzes = new HashSet<Class<?>>();
 
+        // SWAGGER endpoints
+        clazzes.add(OpenApiResource.class);
+
         clazzes.add(CollaborateurResource.class);
         clazzes.add(FicheResource.class);
         clazzes.add(SectionResource.class);
-        clazzes.add(OpenApiResource.class);
-        
+        clazzes.add(SwaggerResource.class);
+
 
         return clazzes;
     }
