@@ -27,6 +27,15 @@ public class FicheService {
         return formatListFiche(fiches);
     }
 
+    public List<FicheDto> getFicheById(int id) {
+        List<Fiche> fiches = new ArrayList<>();
+        Fiche fiche = ficheDao.findById(id);
+        if (fiche != null) {
+            fiches.add(fiche);
+        }
+        return formatListFiche(fiches);
+    }
+
     public List<FicheDto> getFicheBySection(int sectionId) {
         List<Fiche> fiches = ficheDao.findBySection(sectionId);
 

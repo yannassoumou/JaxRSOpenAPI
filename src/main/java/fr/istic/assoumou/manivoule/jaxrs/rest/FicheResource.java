@@ -1,11 +1,6 @@
 package fr.istic.assoumou.manivoule.jaxrs.rest;
 
-import fr.istic.assoumou.manivoule.jaxrs.business.Collaborateur;
-import fr.istic.assoumou.manivoule.jaxrs.business.Fiche;
-import fr.istic.assoumou.manivoule.jaxrs.dao.CollaborateurDao;
-import fr.istic.assoumou.manivoule.jaxrs.dao.SectionDao;
 import fr.istic.assoumou.manivoule.jaxrs.dto.FicheDto;
-import fr.istic.assoumou.manivoule.jaxrs.dto.MoveFicherequest;
 import fr.istic.assoumou.manivoule.jaxrs.service.FicheService;
 
 import javax.ws.rs.*;
@@ -36,6 +31,20 @@ public class FicheResource {
     @Produces( MediaType.APPLICATION_JSON)
     public Response getFicheByRespEmail(@PathParam("email") String respEmail) {
         List<FicheDto> res = ficheService.getFicheByRespEmail(respEmail);
+
+        if (!res.isEmpty()) {
+            return Response.status(200)
+                    .entity(res).build();
+        } else {
+            return Response.status(200).entity("Ce collaborateure n'a aucune fiche !").build();
+        }
+    }
+
+    @GET
+    @Path("/{id}")
+    @Produces( MediaType.APPLICATION_JSON)
+    public Response getFicheById(@PathParam("id") Integer id) {
+        List<FicheDto> res = ficheService.getFicheById(id);
 
         if (!res.isEmpty()) {
             return Response.status(200)

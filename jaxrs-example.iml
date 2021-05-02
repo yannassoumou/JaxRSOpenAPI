@@ -6,8 +6,8 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="dev" />
-          <factory-entry name="mysql" />
+          <factory-entry name="dev" value="b362e41f-b6d9-4980-b32b-3d09b2d5a71e" />
+          <factory-entry name="mysql" value="8c6f4fd3-f5e5-4c3e-a5c4-74f07ee37645" />
           <factory-entry name="prod" />
         </datasource-mapping>
         <naming-strategy-map />
